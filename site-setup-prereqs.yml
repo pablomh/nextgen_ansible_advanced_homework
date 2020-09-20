@@ -17,8 +17,4 @@
     - setup-workstation
     - osp-setup
 
-- import_playbook: site-install-isolated-node.yaml
-
-
-
-
+- import_playbook: site-install-isolated-node.yml
