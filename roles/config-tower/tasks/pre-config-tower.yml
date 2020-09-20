@@ -8,6 +8,11 @@
     src: tower_info.yml
     dest: /tmp/tower_info.yml
 
+- name: Generate var file for enabling own repo
+  template:
+    src: own_repo_vars.yml
+    dest: /tmp/own_repo_vars.yml
+
 - name: Copy opentlc ssh keys
   copy:
     src: "{{path_to_opentlc_key}}"
