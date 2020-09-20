@@ -1,11 +1,27 @@
 - hosts: workstation
   gather_facts: false
   tasks:
-  - name: OpenStack servers
-  - name: Curl website
+
+  - name: OpenStack QA frontend server
+    os_server_info:
+      cloud: openstack
+      server: 'frontend'
+    register: openstack_frontend_info
+    tags:
+      - osp.smoke
+
+  - name: Curl QA frontend website
+    uri:
+      url: "http://{{ openstack_frontend_info['openstack_servers'][0]['public_v4'] }}"
+      status_code: 200
+      return_content: yes
+    register: webpage
+    ignore_errors: yes
+    tags:
+      - osp.smoke
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
-    when: "'Ansible has done its job' not in webpage.results[0].content"
+    when: "'Ansible has done its job' not in webpage.content"
     tags:
       - osp.smoke
