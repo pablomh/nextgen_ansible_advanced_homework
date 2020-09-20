@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: three-tier-app-pablo.mendezhernandez
   gather_facts: false
   tasks:
   - name: Check the instances status
