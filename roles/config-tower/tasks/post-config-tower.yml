@@ -5,7 +5,7 @@
     state: present
     scm_type: git
     scm_url: "{{ scm_url }}"
-    scm_branch : master
+    scm_branch : "{{ scm_branch }}"
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
