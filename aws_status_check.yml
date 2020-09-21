@@ -1,6 +1,10 @@
 - hosts: all
   gather_facts: false
   tasks:
+  - name: Wait for the instances to finish first boot
+    pause:
+      minutes: 15
+
   - name: Check the instances status
     wait_for:
       host: "{{ item }}"
